@@ -7,7 +7,7 @@ from uuid import UUID
 router = APIRouter()
 
 
-@router.post("/", response_model=TenantRead, status_code=status.HTTP_201_CREATED)
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=TenantRead)
 async def create_tenant(
     tenant_data: TenantCreate, service: TenantService = Depends(get_tenant_service)
 ):
@@ -19,4 +19,3 @@ async def get_tenant(
     tenant_id: UUID, service: TenantService = Depends(get_tenant_service)
 ):
     return await service.get_tenant(tenant_id)
-

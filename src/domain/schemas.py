@@ -13,7 +13,7 @@ class BaseSchema(BaseModel):
 # tenants schemas
 class TenantBase(BaseSchema):
     name: str = Field(..., min_length=2, max_length=50)
-    slug: str = Field(..., min_length=2, max_length=50, pattern="^[a-z0-9-]+$")
+    slug: str = Field(..., min_length=2, max_length=50, pattern="^[a-z0-9-A-Z]+$")
 
 
 class TenantCreate(TenantBase):

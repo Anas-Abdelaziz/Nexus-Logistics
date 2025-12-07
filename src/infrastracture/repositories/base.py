@@ -20,7 +20,7 @@ class SQLAlchemyRepository(IRepository[ModelType], Generic[ModelType]):
 
     async def get_by_id(self, uuid: UUID) -> Optional[ModelType]:
         stmt = select(self.model).where(
-            self.model.id == uuid, self.model.deleted_at == False
+            self.model.id == uuid, self.model.is_deleted.is_(False)
         )
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
